@@ -8,8 +8,11 @@ public class HeroController : MonoBehaviour {
     [Header("Ground Movement")]
     public float walkSpeed = 2f;
     public float runSpeed = 5f;
-    private Vector3 groundVelocity;
+    public Vector3 groundVelocity;
+    public Vector3 rbVelocity;
+
     float desiredMoveMultiplier;
+
 
     [Header("Turn")]
     public float turnSpeed = 5.0f;
@@ -24,7 +27,7 @@ public class HeroController : MonoBehaviour {
     private bool m_IsGrounded;
     float m_TurnAmount;
     float m_ForwardAmount;
-    private Vector3 m_Move;
+    public Vector3 m_Move;
 
     // Components
     private Animator animator;
@@ -37,6 +40,8 @@ public class HeroController : MonoBehaviour {
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        groundVelocity = Vector3.zero;
     }
 
     void Update()
@@ -78,44 +83,31 @@ public class HeroController : MonoBehaviour {
         }
     }**/
 
-    public void Move(Vector3 move, bool run = false)
+    public void Move(Vector3 move,bool running, bool multiply = false)
     {
-        /**Vector3 newVelocity = rb.velocity;
-
-        float desiredSpeed = walkSpeed;
-
-        if (running)
-        {
-            desiredSpeed = runSpeed;
-        }
-
-        newVelocity.Set(desiredSpeed * h, newVelocity.y, desiredSpeed * v);
-        **/
-
-
-        // move = transform.InverseTransformDirection(move);
-
-        if (move.magnitude > 1f) move.Normalize();
+        // if (move.magnitude > 1f) move.Normalize();
         CheckGroundStatus();
         m_Move = Vector3.ProjectOnPlane(move, m_GroundNormal);
-
-        // m_Move = move;
-        // rb.velocity = m_Move;
 
         m_TurnAmount = Mathf.Atan2(move.x, move.z);
         m_ForwardAmount = move.z;
         float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-        // transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 
-        desiredMoveMultiplier = (run) ? runSpeed : walkSpeed;
-
-        groundVelocity = Vector3.Lerp(groundVelocity, m_Move * desiredMoveMultiplier * 100f * Time.deltaTime, .1f);
-
-        // we preserve the existing y part of the current velocity.
-        groundVelocity.y = rb.velocity.y;
+        if (multiply)
+        {
+            desiredMoveMultiplier = (running) ? runSpeed : walkSpeed;
+            desiredMoveMultiplier *= 100f;
+            groundVelocity = Vector3.Lerp(groundVelocity, m_Move * desiredMoveMultiplier * Time.deltaTime, .1f);
+            
+        } else
+        {
+            groundVelocity = m_Move;
+        }
+        
+        // groundVelocity.y = rb.velocity.y;
         rb.velocity = groundVelocity;
 
-        if (m_Move != Vector3.zero)
+        if (move != Vector3.zero)
         {
             //Vector3 _direction = (move - transform.position).normalized;
             Vector3 _direction = (m_Move).normalized;
@@ -124,7 +116,6 @@ public class HeroController : MonoBehaviour {
             Quaternion _lookRotation = Quaternion.LookRotation(_direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * this.turnSpeed);
         }
-        // Turn();
     }
 
     private void UpdateAnimator()
@@ -132,9 +123,7 @@ public class HeroController : MonoBehaviour {
         animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
         animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
         animator.SetBool("OnGround", m_IsGrounded);
-        animator.SetFloat("MovingSpeed", groundVelocity.magnitude);
-
-        animator.speed = 1f;
+        animator.SetFloat("MovingSpeed", rb.velocity.magnitude);
     }
 
     void CheckGroundStatus()

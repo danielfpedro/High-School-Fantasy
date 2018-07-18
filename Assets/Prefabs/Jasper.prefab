@@ -745,9 +745,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4291738558812100}
   - component: {fileID: 95071467213177592}
-  - component: {fileID: 114608825236978890}
   - component: {fileID: 54622558669701906}
   - component: {fileID: 136359509538772394}
+  - component: {fileID: 114935521140561748}
+  - component: {fileID: 114608825236978890}
+  - component: {fileID: 208591626993352210}
   m_Layer: 11
   m_Name: Jasper
   m_TagString: Untagged
@@ -1448,7 +1450,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1687113250576104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.25, y: 0.5, z: -7.5}
+  m_LocalPosition: {x: 8, y: 1.5, z: -21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4613062714492212}
@@ -1605,7 +1607,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587241808006894}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.100000024, y: 0.19999999, z: 1.0500011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4291738558812100}
@@ -2194,7 +2196,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f4c283afd38bffc42bc5d03e7678bf09, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2211,20 +2213,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcc43294df3d6d4da2010a430afc8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSmooth: 5
   walkSpeed: 1.5
   runSpeed: 3.5
-  moving: 0
-  running: 0
-  grounded: 0
-  h: 0
-  v: 0
-  diff: 0
-  diffT: 0
-  characterCurrentSpeed: 0
+  groundVelocity: {x: 0, y: 0, z: 0}
+  rbVelocity: {x: 0, y: 0, z: 0}
+  turnSpeed: 5
+  m_MovingTurnSpeed: 360
+  m_StationaryTurnSpeed: 180
+  m_GroundCheckDistance: 0.3
+  m_Move: {x: 0, y: 0, z: 0}
   sidewalkSensor:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114935521140561748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1687113250576104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a061cf1e7df6be541bc934e9bc2af26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136359509538772394
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2235,9 +2246,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.19
-  m_Height: 1
+  m_Height: 1.52
   m_Direction: 1
-  m_Center: {x: 0, y: 0.48, z: 0}
+  m_Center: {x: 0, y: 0.74, z: 0}
 --- !u!137 &137007512150208312
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2253,7 +2264,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1a3541001bd8cf3499c9110973648a68, type: 2}
+  - {fileID: 2100000, guid: 3773ed6cc2ae6f9489a7a70fdbfd874b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2303,7 +2314,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3773ed6cc2ae6f9489a7a70fdbfd874b, type: 2}
+  - {fileID: 2100000, guid: c1044b23f0b306c4e995c0fa71c1a5c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2471,7 +2482,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: eeacfa5a3355d33488c7d7f0b974fe52, type: 2}
+  - {fileID: 2100000, guid: b92d35edcfa9f824e8a40b390a7d0cab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2624,3 +2635,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.07179062, y: -0.43269438, z: 0.0026062503}
     m_Extent: {x: 0.13102412, y: 0.059165403, z: 0.128741}
   m_DirtyAABB: 0
+--- !u!208 &208591626993352210
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1687113250576104}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.2, y: 0.925, z: 0.2}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.87, z: 0}
+  m_TimeToStationary: 0.5

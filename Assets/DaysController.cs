@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class DaysController : MonoBehaviour {
 
+    public int initTime;
     static public float time;
     public TimeSpan currentTime;
     public Light sun;
@@ -21,7 +22,8 @@ public class DaysController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        time = 2 * 3600;
+        time = 0;
+        SetTime(initTime * 3600);
 	}
 	
 	// Update is called once per frame

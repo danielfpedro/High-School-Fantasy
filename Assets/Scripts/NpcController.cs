@@ -12,22 +12,25 @@ public class NpcController : MonoBehaviour {
 
     public HeroController heroController;
 
-    public List<Vector3> nodes;
-
-    private int currentNodeIndex = 0;
-
-    public Transform nodesParent;
+    // public List<Vector3> nodes;
+    // private int currentNodeIndex = 0;
+    // public Transform nodesParent;
 
 	// Use this for initialization
 	void Start () {
+        cam = Camera.main;
+        agent = GetComponent<NavMeshAgent>();
+
         heroController = GetComponent<HeroController>();
         agent.updateRotation = false;
+
         // agent.SetDestination(target);
 
-        for (int i = 0; i < nodesParent.childCount; i++)
+        /**for (int i = 0; i < nodesParent.childCount; i++)
         {
             nodes.Add(nodesParent.GetChild(i).transform.position);
         }
+        **/
 
         // agent.SetDestination(nodes[currentNodeIndex]);
     }
@@ -47,19 +50,11 @@ public class NpcController : MonoBehaviour {
 
         if (agent.remainingDistance > agent.stoppingDistance)
         {
-            heroController.Move(agent.desiredVelocity);
+            heroController.Move(agent.desiredVelocity, false, false);
         } else
         {
-            if ((currentNodeIndex + 1) >= nodes.Count)
-            {
-                currentNodeIndex = 0;
-            }
-            else {
-                currentNodeIndex++;
-                
-            }
-            heroController.Move(Vector3.zero);
-            // heroController.Move(Vector3.zero);
+            Debug.Log("AQUI");
+            heroController.Move(Vector3.zero, false, false);
         }
         
 

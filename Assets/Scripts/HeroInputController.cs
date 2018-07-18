@@ -41,8 +41,18 @@ public class HeroInputController : MonoBehaviour {
 
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
-        m_Move = v * Vector3.forward + h * Vector3.right;
-
+        if (m_Cam != null)
+        {
+            // calculate camera relative direction to move:
+            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+            m_Move = v * m_CamForward + h * m_Cam.right;
+        }
+        else
+        {
+            Debug.Log("No main camera");
+            // we use world-relative directions in the case of no main camera
+            m_Move = v * Vector3.forward + h * Vector3.right;
+        }
         
     }
 
@@ -50,6 +60,7 @@ public class HeroInputController : MonoBehaviour {
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
-        m_Character.Move(m_Move, (Input.GetButton("Run")));
+        
+        m_Character.Move(m_Move, Input.GetButton("Run"), true);
     }
 }

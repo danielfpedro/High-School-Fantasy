@@ -18,9 +18,9 @@ TagManager:
   - Sidewalk
   - Ground
   - Player
-  - 
-  - 
-  - 
+  - NPCWalkable
+  - StaticObject
+  - Street
   - 
   - 
   - 

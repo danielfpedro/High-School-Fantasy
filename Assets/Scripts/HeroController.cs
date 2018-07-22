@@ -99,6 +99,7 @@ public class HeroController : MonoBehaviour {
             desiredMoveMultiplier *= 100f;
             groundVelocity = Vector3.Lerp(groundVelocity, m_Move * desiredMoveMultiplier * Time.deltaTime, .1f);
             
+
         } else
         {
             groundVelocity = m_Move;

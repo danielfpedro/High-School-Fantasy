@@ -69,15 +69,15 @@ MonoBehaviour:
       screenEdgeMask:
         intensity: 0.03
   depthOfField:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      focusDistance: 5
-      aperture: 2.5
+      focusDistance: 4
+      aperture: 5.6
       focalLength: 50
       useCameraFov: 0
-      kernelSize: 1
+      kernelSize: 3
   motionBlur:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       shutterAngle: 360
       sampleCount: 10
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.2
+        intensity: 0.3
         threshold: 0.93
         softKnee: 0.496
         radius: 1.49
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 0.77823, b: 0.61547315, a: 0}
-          power: {r: 0.6278385, g: 1, b: 0.72087884, a: 0}
-          offset: {r: 1, g: 0.82608926, b: 0.6097524, a: 0}
+          slope: {r: 1, g: 0.942655, b: 0.46376348, a: 0}
+          power: {r: 0.80433905, g: 1, b: 0.8675984, a: 0}
+          offset: {r: 1, g: 0.9730838, b: 0.62327266, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}

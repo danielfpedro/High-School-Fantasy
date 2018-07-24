@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: bd7e0f3c7ea786d4994c00b0523fb2b6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Athiti
+  fontNames:
+  - Athiti
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8c2cdeb1cb085ad4c99a5eeaade6cacb, type: 3}
+  - {fileID: 12800000, guid: 038937447ea5b2649a2db576049e1dec, type: 3}
+  - {fileID: 12800000, guid: 3e39096ad7c5944489bc78070d6216dc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

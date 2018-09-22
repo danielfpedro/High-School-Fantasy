@@ -55,19 +55,19 @@ MonoBehaviour:
       reflection:
         blendType: 0
         reflectionQuality: 2
-        maxDistance: 100
-        iterationCount: 256
-        stepSize: 3
-        widthModifier: 0.5
-        reflectionBlur: 1
-        reflectBackfaces: 0
+        maxDistance: 300
+        iterationCount: 1024
+        stepSize: 16
+        widthModifier: 10
+        reflectionBlur: 7.2
+        reflectBackfaces: 1
       intensity:
-        reflectionMultiplier: 1
-        fadeDistance: 100
+        reflectionMultiplier: 1.74
+        fadeDistance: 849
         fresnelFade: 1
-        fresnelFadePower: 1
+        fresnelFadePower: 10
       screenEdgeMask:
-        intensity: 0.03
+        intensity: 1
   depthOfField:
     m_Enabled: 1
     m_Settings:
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.3
+        intensity: 0.1
         threshold: 0.93
         softKnee: 0.496
         radius: 1.49
@@ -120,12 +120,12 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.5
-        temperature: 0
+        postExposure: 0
+        temperature: 63
         tint: 0
         hueShift: 0
-        saturation: 1
-        contrast: 1
+        saturation: 0.6
+        contrast: 1.09
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 0.942655, b: 0.46376348, a: 0}
-          power: {r: 0.80433905, g: 1, b: 0.8675984, a: 0}
-          offset: {r: 1, g: 0.9730838, b: 0.62327266, a: 0}
+          slope: {r: 1, g: 0.5331221, b: 0.60675126, a: 0}
+          power: {r: 0.6694112, g: 1, b: 0.9685358, a: 0}
+          offset: {r: 0.96632975, g: 1, b: 0.7393668, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -313,7 +313,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       colored: 0
-      intensity: 0.098
+      intensity: 0.15
       size: 0.3
       luminanceContribution: 0
   vignette:
